@@ -1,0 +1,10 @@
+name: "Invoice Ninja"
+version: "1.0"
+slug: "invoiceninja"
+description: "Invoice Ninja Addon for Home Assistant"
+arch:
+  - aarch64
+  - amd64
+startup: "services"
+boot: "auto"
+host_network: true

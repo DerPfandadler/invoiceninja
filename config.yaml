@@ -1,10 +1,36 @@
-name: "Invoice Ninja"
-version: "1.0"
-slug: "invoiceninja"
+name: Invoice Ninja
+version: "dev"
+slug: invoiceninja
 description: "Invoice Ninja Addon for Home Assistant"
+url: https://github.com/DerPfandadler/invoiceninja
 arch:
   - aarch64
   - amd64
-startup: "services"
-boot: "auto"
-host_network: true
+startup: services
+boot: auto
+ports:
+  80/tcp: 8000
+map:
+  - config:rw
+  - ssl
+options:
+  app_url: 'http://homeassistant.local'
+  db_host: 'core-mariadb'
+  db_username: 'ninja'
+  db_password: 'password'
+  db_database: 'ninja'
+  app_key: 'base64:YOUR_GENERATED_KEY'
+schema:
+  app_url: str
+  db_host: str
+  db_username: str
+  db_password: str
+  db_database: str
+  app_key: str
+environment:
+  APP_URL: '{{ options.app_url }}'
+  DB_HOST: '{{ options.db_host }}'
+  DB_USERNAME: '{{ options.db_username }}'
+  DB_PASSWORD: '{{ options.db_password }}'
+  DB_DATABASE: '{{ options.db_database }}'
+  APP_KEY: '{{ options.app_key }}'

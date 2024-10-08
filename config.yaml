@@ -1,29 +1,36 @@
-name: Filestash
-version: dev
-slug: filestash
-description: Filestash file manager
-url: https://github.com/DerPfandadler/invoiceninja
+name: "Invoice Ninja"
+version: "1.0"
+slug: "invoiceninja"
+description: "Invoice Ninja Addon for Home Assistant"
+url: "https://github.com/DerPfandadler/invoiceninja"
 arch:
   - aarch64
-startup: services
-boot: auto
+  - amd64
+startup: "services"
+boot: "auto"
 ports:
-  8334/tcp: 8334
+  80/tcp: 8000
 map:
   - config:rw
   - ssl
 options:
-  application_url: 'http://homeassistant.local'
-  gdrive_client_id: ''
-  gdrive_client_secret: ''
-  dropbox_client_id: ''
+  app_url: "http://homeassistant.local"
+  db_host: "core-mariadb"
+  db_username: "ninja"
+  db_password: "password"
+  db_database: "ninja"
+  app_key: "base64:YOUR_GENERATED_KEY"
 schema:
-  application_url: str
-  gdrive_client_id: str
-  gdrive_client_secret: str
-  dropbox_client_id: str
+  app_url: str
+  db_host: str
+  db_username: str
+  db_password: str
+  db_database: str
+  app_key: str
 environment:
-  APPLICATION_URL: '{{ options.application_url }}'
-  GDRIVE_CLIENT_ID: '{{ options.gdrive_client_id }}'
-  GDRIVE_CLIENT_SECRET: '{{ options.gdrive_client_secret }}'
-  DROPBOX_CLIENT_ID: '{{ options.dropbox_client_id }}'
+  APP_URL: "{{ options.app_url }}"
+  DB_HOST: "{{ options.db_host }}"
+  DB_USERNAME: "{{ options.db_username }}"
+  DB_PASSWORD: "{{ options.db_password }}"
+  DB_DATABASE: "{{ options.db_database }}"
+  APP_KEY: "{{ options.app_key }}"
